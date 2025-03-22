@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexandre Mourão Advocacia</title>
+    <link rel="icon" href="imagens/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <style
+        /* Estilos globais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Merriweather', serif;
+        }
+
+        body {
+            background: linear-gradient(270deg, #004aad, #1c1c1c, #ff5722);
+            background-size: 600% 600%;
+            animation: gradientAnimation 10s ease infinite;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Cabeçalho */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        header .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        header .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff5722;
+        }
+
+        header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        nav a:hover {
+            background: #ff5722;
+            color: white;
+            box-shadow: 0px 4px 10px rgba(255, 87, 34, 0.5);
+        }
+
+        /* Menu responsivo */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+            transition: 0.3s;
+        }
+
+        nav.responsive {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            position: absolute;
+            top: 70px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        nav.responsive a {
+            font-size: 16px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav.responsive.active {
+            display: flex;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #ff5722;
+            animation: fadeIn 2s ease;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin: 20px 0;
+            color: #fff;
+            animation: fadeIn 3s ease;
+        }
+
+        .hero .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(90deg, #ff5722, #e64a19);
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            animation: fadeIn 4s ease;
+            box-shadow: 0px 4px 10px rgba(255, 87, 34, 0.5);
+        }
+
+        .hero .btn:hover {
+            background: linear-gradient(90deg, #e64a19, #ff5722);
+            transform: scale(1.1);
+            box-shadow: 0px 6px 15px rgba(255, 87, 34, 0.7);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Botão de WhatsApp */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 1000;
+        }
+
+        .whatsapp-button img {
+            width: 35px;
+            height: 35px;
+        }
+
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Formulário */
+        .form-container {
+            padding: 50px 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .form-container h2 {
+            color: #ff5722;
+            margin-bottom: 20px;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-container input, .form-container textarea {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container button {
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #ff5722, #e64a19);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0px 4px 10px rgba(255, 87, 34, 0.5);
+        }
+
+        .form-container button:hover {
+            background: linear-gradient(90deg, #e64a19, #ff5722);
+            transform: scale(1.1);
+            box-shadow: 0px 6px 15px rgba(255, 87, 34, 0.7);
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #ff5722;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo-container">
+            <img src="imagens/download.png" alt="Logo Alexandre Mourão">
+            <div class="logo">Alexandre Mourão</div>
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav id="menu">
+            <a href="#sobre">Sobre</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#contato">Contato</a>
+            <a href="#formulario">Agende uma Consulta</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Advocacia Especializada</h1>
+        <p>Protegendo seus direitos com excelência e dedicação.</p>
+        <a href="https://wa.me/92984803645" class="btn">Fale com um Advogado</a>
+    </div>
+
+    <!-- Seção: Sobre -->
+    <div class="section" id="sobre">
+        <h2>Sobre Alexandre Mourão</h2>
+        <p>Com anos de experiência, Alexandre Mourão é especialista em Direito Trabalhista, Civil e Pequenas Causas. Nosso objetivo é oferecer soluções jurídicas personalizadas para cada cliente.</p>
+    </div>
+
+    <!-- Seção: Serviços -->
+    <div class="section" id="servicos">
+        <h2>Nossos Serviços</h2>
+        <p>Oferecemos atendimento especializado nas seguintes áreas:</p>
+        <ul>
+            <li><strong>Direito Trabalhista:</strong> Defesa de direitos do trabalhador e empregador.</li>
+            <li><strong>Pequenas Causas:</strong> Solução de problemas jurídicos do dia a dia.</li>
+            <li><strong>Direito Civil:</strong> Questões contratuais, indenizações e muito mais.</li>
+        </ul>
+        <a href="https://wa.me/92984803645" class="btn-secondary">Saiba Mais</a>
+    </div>
+
+    <!-- Formulário -->
+    <div class="form-container" id="formulario">
+        <h2>Agende uma Consulta</h2>
+        <form id="whatsappForm">
+            <input type="text" id="nome" name="nome" placeholder="Seu Nome" required>
+            <input type="email" id="email" name="email" placeholder="Seu E-mail" required>
+            <input type="tel" id="telefone" name="telefone" placeholder="Seu Telefone" required>
+            <textarea id="mensagem" name="mensagem" rows="5" placeholder="Descreva sua necessidade" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <!-- Botão de WhatsApp -->
+    <a href="https://wa.me/92984803645" class="whatsapp-button" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2025 Alexandre Mourão Advocacia. Todos os direitos reservados.</p>
+        <p>
+            <a href="#termos">Termos de Uso</a> | 
+            <a href="#privacidade">Política de Privacidade</a> | 
+            <a href="#contato">Contato</a>
+        </p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('active');
+        }
+
+        document.getElementById('whatsappForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            // Obtém os valores dos campos do formulário
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const telefone = document.getElementById('telefone').value;
+            const mensagem = document.getElementById('mensagem').value;
+
+            // Monta a mensagem para o WhatsApp
+            const whatsappMessage = `Olá, meu nome é ${nome}.%0AEmail: ${email}%0ATelefone: ${telefone}%0AMensagem: ${mensagem}`;
+
+            // Redireciona para o WhatsApp com a mensagem
+            const whatsappURL = `https://wa.me/92984803645?text=${whatsappMessage}`;
+            window.open(whatsappURL, '_blank');
+        });
+    </script>
+
+</body>
+</html>
